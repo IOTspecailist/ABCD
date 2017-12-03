@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	
+	<typeAliases>
+<!-- 		<typeAlias alias="Member" type="com.pension.member.dto.Member"/> -->
+<!-- 		<typeAlias alias="News" type="com.pension.news.dto.News"/>  -->
+<!-- 		<typeAlias alias="Event" type="com.pension.event.dto.Event"/> -->
+<!-- 		<typeAlias alias="Qna" type="com.pension.qna.dto.Qna"/> -->
+<!-- 		<typeAlias alias="Sales" type="com.pension.sales.dto.Sales"/> -->
+<!-- 		<typeAlias alias="Review" type="com.pension.review.dto.Review"/> -->
+<!-- 		<typeAlias alias="Reserve" type="com.pension.reservation.dto.Reserve"/> -->
+	</typeAliases>
+	
+	<mappers>
+	</mappers>
+</configuration>
