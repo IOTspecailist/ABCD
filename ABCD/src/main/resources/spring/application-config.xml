@@ -11,7 +11,7 @@
 	<!-- @Repository, @Service, @Controller를 스캔 할 위치를 설정했다 -->
 	<context:component-scan base-package="com.ranking" />
 
-	<!-- mybatis에서 제공하는 클래스를 bean에 등록 (bean에다가 스프링 컨테이너가 사용할 환경설정을 정의한다고 보면 된다 )-->
+	<!-- mybatis에서 제공하는 클래스를 bean태그에 정의해서 컨테이너에 등록 (bean에다가 스프링 컨테이너가 사용할 환경설정을 정의한다고 보면 된다 )-->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		
 		<!-- name부분은 등록된 클래스가 가지고 있는 메소드이며 value에는 해당 메소드의 매개변수에 들어갈 값을 설정한다 -->
@@ -19,9 +19,15 @@
 		<property name="dataSource" ref="apacheDataSource" /><!-- apacheDataSource는 import한 곳에서 가져왔다 -->
 		<property name="mapperLocations"><!-- 이거는 보면 매개변수가 배열로 되어있기 때문에 다음과 같이 여러개 처리가능 -->
 			<list>
-				<value>classpath:com/pension/mapper/member/MemberMapper.xml</value>
+				<value>classpath:com/ranking/mapper/member/MemberMapper.xml</value>
 			<!--<value>classpath:com/pension/mapper/member/MemberMapper.xml</value> -->
 			</list>
 		</property>
+	</bean>
+	
+	<!-- 쿼리문이 작성된 Mapper.xml파일과 DB연결정보를 DAO에 주입시키는 bean 등록(DAO, Service, Controller중에 아마 DAO일듯)  -->
+	<bean id="memberMapper" class="org.mybatis.spring.mapper.MapperFactoryBean" >
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+		<property name="mapperInterface" value="com.ranking.mapper.member.MemberMapper" />
 	</bean>
 </beans>
