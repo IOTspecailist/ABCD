@@ -3,7 +3,7 @@
 <configuration>
 	
 	<typeAliases>
-<!-- 		<typeAlias alias="Member" type="com.pension.member.dto.Member"/> -->
+		<typeAlias alias="MemberDto" type="com.ranking.member.MemberDto"/>
 <!-- 		<typeAlias alias="News" type="com.pension.news.dto.News"/>  -->
 <!-- 		<typeAlias alias="Event" type="com.pension.event.dto.Event"/> -->
 <!-- 		<typeAlias alias="Qna" type="com.pension.qna.dto.Qna"/> -->

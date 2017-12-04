@@ -1,12 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-    
-    <import resource="datasource-config.xml"/>
-    <!-- Uncomment and add your base-package here:
-         <context:component-scan base-package="org.springframework.samples.service"/>  -->
 
+	<!-- 데이터베이스와 접속한 datasource-config.xml파일을 import했다 -->
+	<import resource="datasource-config.xml" />
+
+	<!-- @Repository, @Service, @Controller를 스캔 할 위치를 설정했다 -->
+	<context:component-scan base-package="com.ranking" />
+
+	<!-- mybatis에서 제공하는 클래스를 bean에 등록 (bean에다가 스프링 컨테이너가 사용할 환경설정을 정의한다고 보면 된다 )-->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		
+		<!-- name부분은 등록된 클래스가 가지고 있는 메소드이며 value에는 해당 메소드의 매개변수에 들어갈 값을 설정한다 -->
+		<property name="configLocation" value="classpath:spring/mybatis-config.xml" />
+		<property name="dataSource" ref="apacheDataSource" /><!-- apacheDataSource는 import한 곳에서 가져왔다 -->
+		<property name="mapperLocations"><!-- 이거는 보면 매개변수가 배열로 되어있기 때문에 다음과 같이 여러개 처리가능 -->
+			<list>
+				<value>classpath:com/pension/mapper/member/MemberMapper.xml</value>
+			<!--<value>classpath:com/pension/mapper/member/MemberMapper.xml</value> -->
+			</list>
+		</property>
+	</bean>
 </beans>
